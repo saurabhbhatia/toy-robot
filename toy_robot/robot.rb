@@ -22,24 +22,28 @@ class Robot
   end
 
   def left
+    # go left
     return unless placed?
     
     @position = left_turn_position
   end
 
   def right
+    # go right
     return unless placed?
       
     @position = right_turn_position
   end
 
   def placed?
+    # check if place is true or not
     placed
   end
 
   def report
     return unless placed?
 
+    # output
     STDOUT.puts position.to_s
   end
 
@@ -52,10 +56,12 @@ class Robot
   end
 
   def x_position
+    # move x poisiton accoridng to the input direction
     position[0].to_i + movement_adjustment_x
   end
 
   def y_position
+    # move y poisiton accoridng to the input direction
     position[1].to_i + movement_adjustment_y
   end
 
@@ -94,16 +100,19 @@ class Robot
   end
 
   def right_turn_position
+    # set coordinates for right turn position
     move_position = Position.new
     move_coordinates = Array[position[0], position[1], right_turn_direction]
     move_position.coordinates(move_coordinates)
   end
 
   def left_turn_direction
+    # fetch direction when left position
     directions.left(position[2])
   end
 
   def right_turn_direction
+    # fetch direction when right position
     directions.right(position[2])
   end
 
