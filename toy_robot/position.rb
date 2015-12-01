@@ -1,3 +1,4 @@
+# position coordinates
 class Position
   def coordinates(coordinates)
     coordinates
