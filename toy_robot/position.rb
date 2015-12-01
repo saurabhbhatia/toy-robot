@@ -1,5 +1,5 @@
 class Position
-  def coordinates(x, y, direction)
-    Array[x, y, direction]
+  def coordinates(coordinates)
+    coordinates
   end
 end

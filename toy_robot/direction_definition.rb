@@ -18,7 +18,7 @@ class DirectonDefinition
 
   # direction definition
   def all_directions
-    %w(NORTH EAST WEST SOUTH)
+    %w(NORTH EAST SOUTH WEST)
   end
 
   def reverse_all_directions

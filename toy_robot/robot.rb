@@ -51,21 +51,22 @@ class Robot
     tabletop.validate_position?(movement_position)
   end
 
-  def movement_position
-    position = Position.new
-    position.coordinates(x_position, y_position, position.direction)
-  end
-
   def x_position
-    position.x + movement_adjustment_x
+    position[0].to_i + movement_adjustment_x
   end
 
   def y_position
-    position.y + movement_adjustment_y
+    position[1].to_i + movement_adjustment_y
+  end
+
+  def movement_position
+    move_position = Position.new
+    coordinates = Array[x_position, y_position, position[2]]
+    move_position.coordinates(coordinates)
   end
 
   def movement_adjustment_x
-    case position.direction
+    case position[2]
     when 'EAST'
       1
     when 'WEST'
@@ -75,8 +76,8 @@ class Robot
     end
   end
 
-  def movment_adjustment_y
-    case position.direction
+  def movement_adjustment_y
+    case position[2]
     when 'NORTH'
       1
     when 'SOUTH'
@@ -87,21 +88,23 @@ class Robot
   end
 
   def left_turn_position
-    position = Position.new
-    position.coordinates(position.x, position.y, left_turn_direction)
+    move_position = Position.new
+    move_coordinates = Array[position[0], position[1], left_turn_direction]
+    move_position.coordinates(move_coordinates)
   end
 
   def right_turn_position
-    position = Position.new
-    position.coordinates(position.x, position.y, position.direction)
+    move_position = Position.new
+    move_coordinates = Array[position[0], position[1], right_turn_direction]
+    move_position.coordinates(move_coordinates)
   end
 
   def left_turn_direction
-    directions.left(position.direction)
+    directions.left(position[2])
   end
 
   def right_turn_direction
-    directions.right(position.direction)
+    directions.right(position[2])
   end
 
   def directions
